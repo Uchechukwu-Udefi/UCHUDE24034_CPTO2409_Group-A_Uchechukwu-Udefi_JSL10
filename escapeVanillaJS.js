@@ -22,11 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
-        const jsConcepts = new Set(['closure', 'scope', 'hoisting']);
-        // 🪲 Bug: What's mssing from JS concepts?
+        //display the common concepts between JS and React
+        const jsConcepts = new Set(['closure', 'scope', 'hoisting' ,'async']);
+        // 🪲 Bug: What's mssing from JS concepts? ('async' is omitted in jsConcepts)
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
         const commonConcepts = findIntersection(jsConcepts, reactConcepts);
+        //fix the correct function call to find the common concepts between JS and React
         console.log('commonConcepts:',commonConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
@@ -55,11 +57,8 @@ function findMostRecentBook(books) {
 
 function findIntersection(setA, setB) {
     // 🪲 Bug: Incorrect logic
-    const intersection = new Set([...setA].filter(x => setB.has(x)));
+    return new Set([...setA].filter(concept => setB.has(concept)));
     //fix the logic to find the intersection of two sets.
-
-    //const intersection = new Set([...setA]);
-    return intersection;
 }
 
 async function navigateLabyrinth(directions) {
