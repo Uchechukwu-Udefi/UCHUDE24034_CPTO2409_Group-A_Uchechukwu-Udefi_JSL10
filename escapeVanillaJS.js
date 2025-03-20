@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 🪲 Bug: Incorrect ID used for attaching the event listener
     document.getElementById("solveRoom1").addEventListener("click", () => {
+        //fix the correct element ID to attach the event listener
         fetch('books.json') 
             .then(response => {
                 if(!response.ok)
@@ -8,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.json();
             })
             .then(books => {
-                // 🪲 Bug: Incorrect function call
                 const mostRecentBook = findMostRecentBook(books);
                 console.log('mostRecentBook:',mostRecentBook);
                 // 🪲 Bug: Incorrect element ID
                 document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
+                //fix the correct element ID to display content.
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -43,12 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-//Fetch the list of books from an external JSON file named `books.json`, find the most recent book published and display as the key to the next room.   
+//function to find the most recent book published and display as the key to the next room.   
 function findMostRecentBook(books) {
  
         // 🪲 Bug: Logic error
         return books.reduce((mostRecent, book) => new Date(book.published) > new Date(mostRecent.published) ? book : mostRecent, books[0]);
-
+        //fix the comparison logic to get the most recent book and use the first book as the initial value for comparison.
 };
 
 function findIntersection(setA, setB) {
