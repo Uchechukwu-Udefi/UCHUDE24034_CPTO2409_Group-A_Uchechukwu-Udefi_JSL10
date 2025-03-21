@@ -36,7 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🪲 Bug: Asynchronous function ?
     document.getElementById("solveRoom3").addEventListener("click", () => {
         fetch('directions.json') 
-            .then(response => response.json())
+            .then(response => {
+                if(!response.ok)
+                    throw Error('Directions not found')
+                return response.json();
+            })
             .then(directions => {
                 navigateLabyrinth(directions)
                     .then(message => {
@@ -45,6 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         document.getElementById("room3Result").textContent = message;
                         //fix the correct method by changing innerHTML to textContent to display the message.
                     });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById("room3Result").textContent = `Error: ${error}`;
             });
     });
 });
