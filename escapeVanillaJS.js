@@ -40,8 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(directions => {
                 navigateLabyrinth(directions)
                     .then(message => {
+                        console.log(message);
                         // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
+                        document.getElementById("room3Result").textContent = message;
+                        //fix the correct method by changing innerHTML to textContent to display the message.
                     });
             });
     });
@@ -64,8 +66,10 @@ function findIntersection(setA, setB) {
 async function navigateLabyrinth(directions) {
     for (let direction of directions) {
         // 🪲 Bug: No delay
-        new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        //fix the delay by adding await to the promise
         console.log(`Navigating: ${direction.step}`);
+        
     }
     return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
 }
