@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error('Error:', error);
                 document.getElementById("room1Result").textContent = `Error: ${error}`;
             });
+        //disable the button after solving the room
+        document.getElementById("solveRoom1").disabled = true;
     });
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
@@ -31,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         //fix the correct function call to find the common concepts between JS and React
         console.log('commonConcepts:',commonConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
+        
+        //disable the button after solving the room
+        document.getElementById("solveRoom2").disabled = true;
     });
 
     // 🪲 Bug: Asynchronous function ?
@@ -54,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error('Error:', error);
                 document.getElementById("room3Result").textContent = `Error: ${error}`;
             });
+        //disable the button after solving the room
+        document.getElementById("solveRoom3").disabled = true;
     });
 });
 
